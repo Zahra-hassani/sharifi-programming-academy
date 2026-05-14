@@ -8,6 +8,7 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
@@ -26,7 +27,9 @@ class ListPayments extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Payment::query())
             ->columns([
-                //
+                TextColumn::make('Student.user.name'),
+                TextColumn::make('sinf.title'),
+                TextColumn::make('amount')
             ])
             ->filters([
                 //

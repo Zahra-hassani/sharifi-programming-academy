@@ -8,6 +8,7 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
@@ -26,7 +27,11 @@ class ListSalaries extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Salary::query())
             ->columns([
-                //
+                TextColumn::make('teacher.user.name'),
+                TextColumn::make('year'),
+                TextColumn::make('month'),
+                TextColumn::make('day'),
+                TextColumn::make('amount'),
             ])
             ->filters([
                 //

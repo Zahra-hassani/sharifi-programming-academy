@@ -27,6 +27,7 @@ class ListStudents extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Student::query())
             ->columns([
+                TextColumn::make('user.name')->searchable(),
                 TextColumn::make('last_name'),
                 TextColumn::make('phone_number'),
                 TextColumn::make('tazkira_no')

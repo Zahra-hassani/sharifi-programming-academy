@@ -27,6 +27,7 @@ class ListAdmins extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Admin::query())
             ->columns([
+                TextColumn::make('user.name'),
                 TextColumn::make('last_name'),
                 TextColumn::make('bio')
             ])

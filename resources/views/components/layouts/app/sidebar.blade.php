@@ -9,7 +9,7 @@
         {{-- @vite(['resources/css/app.css','resources/js/app.js'])  --}}
         @include('partials.head')
         @filamentStyles
-        @vite('resources/css/app.css')
+        @vite(['./resources/css/app.css','./resources/js/app.js'])
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -25,10 +25,14 @@
                 </flux:navlist.group>
                 <flux:navlist.group heading="Management" class="grid">
                     <flux:navlist.item icon="user" :href="route('admin.index')" :current="request()->routeIs('admin.index')" wire:navigate>Admin</flux:navlist.item>
-                    <flux:navlist.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>Manage Users</flux:navlist.item>
-                    <flux:navlist.item icon="user" :href="route('teachers.index')" :current="request()->routeIs('teachers.index')" wire:navigate>Manage Teachers</flux:navlist.item>
-                    <flux:navlist.item icon="user" :href="route('students.index')" :current="request()->routeIs('students.index')" wire:navigate>Manage Students</flux:navlist.item>
-                    <flux:navlist.item icon="home" :href="route('classes.index')" :current="request()->routeIs('classes.index')" wire:navigate>Manage Classes</flux:navlist.item>
+                    <flux:navlist.item icon="user-group" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>Manage Users</flux:navlist.item>
+                    <flux:navlist.item icon="user-circle" :href="route('teachers.index')" :current="request()->routeIs('teachers.index')" wire:navigate>Manage Teachers</flux:navlist.item>
+                    <flux:navlist.item icon="academic-cap" :href="route('students.index')" :current="request()->routeIs('students.index')" wire:navigate>Manage Students</flux:navlist.item>
+                    <flux:navlist.item icon="building-library" :href="route('classes.index')" :current="request()->routeIs('classes.index')" wire:navigate>Manage Classes</flux:navlist.item>
+                </flux:navlist.group>
+                <flux:navlist.group heading="Finance" class="grid">
+                    <flux:navlist.item icon="banknotes" :href="route('payments.index')" :current="request()->routeIs('payments.index')" wire:navigate>Student Payment</flux:navlist.item>
+                    <flux:navlist.item icon="scale" :href="route('salaries.index')" :current="request()->routeIs('salaries.index')" wire:navigate>Teachers Salaries </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -143,7 +147,7 @@
         {{ $slot }}
 
         @fluxScripts
-        @filamentStyles
+        @filamentScripts()
         @vite('resources/css/app.css')
     </body>
 </html>

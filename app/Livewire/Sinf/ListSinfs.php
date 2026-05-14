@@ -27,8 +27,11 @@ class ListSinfs extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Sinf::query())
             ->columns([
-                TextColumn::make('title'),
-                textColumn::make('description')
+                TextColumn::make('title')->label('Course Name')->searchable(),
+                TextColumn::make('teacher.user.name')->label('Teacher Name'),
+                TextColumn::make('start_date'),
+                TextColumn::make('end_date')->toggleable(isToggledHiddenByDefault:true),
+                TextColumn::make('description')->limit(15),
             ])
             ->filters([
                 //
