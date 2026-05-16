@@ -27,7 +27,7 @@ class ListPayments extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Payment::query())
             ->columns([
-                TextColumn::make('Student.user.name'),
+                TextColumn::make('Student.user.name')->label('Student Name'),
                 TextColumn::make('sinf.title'),
                 TextColumn::make('amount')
             ])

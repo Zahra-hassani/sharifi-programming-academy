@@ -29,11 +29,12 @@ class ListTeachers extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Teacher::query())
             ->columns([
-                TextColumn::make('user.name')->sortable()->searchable(),
+                TextColumn::make('user.name')->sortable()->searchable()->label('Teacher Name'),
                 TextColumn::make('last_name'),
                 TextColumn::make('degree_of_education')->badge(),
                 TextColumn::make('phone_number')->toggleable(isToggledHiddenByDefault:true),
                 TextColumn::make('bio')->limit(20)->toggleable(isToggledHiddenByDefault:true),
+                TextColumn::make('salaries.amount')->limitList(1)->bulleted()->separator(',')->money('AFG')
             ])
             ->filters([
                 //
