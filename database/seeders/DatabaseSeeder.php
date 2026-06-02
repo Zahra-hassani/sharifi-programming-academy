@@ -15,6 +15,30 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        // User::factory()->create([
+        //     "name" => "Nila",
+        //     "email"=> "nila@example.com",
+        //     "password"=> bcrypt("12345678"),
+        //     "role" => "user"
+        // ]);
+        // User::factory()->create([
+        //     "name" => "Sahar",
+        //     "email"=> "sahar@example.com",
+        //     "password"=> bcrypt("12345678"),
+        //     "role" => "user"
+        // ]);
+        // User::factory()->create([
+        //     "name" => "Layla",
+        //     "email"=> "layla@example.com",
+        //     "password"=> bcrypt("12345678"),
+        //     "role" => "user"
+        // ]);
+        // User::factory()->create([
+        //     "name" => "Ahmad",
+        //     "email"=> "ahmad@example.com",
+        //     "password"=> bcrypt("12345678"),
+        //     "role" => "user"
+        // ]);
         $this->call([
             // AdminSeeder::class,
             // StudentSeeder::class,
