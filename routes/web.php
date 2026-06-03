@@ -3,6 +3,8 @@
 use App\Livewire\Admin\ListAdmins;
 use App\Livewire\Payment\ListPayments;
 use App\Livewire\Salary\ListSalaries;
+use App\Livewire\Sinf\CreateSinf;
+use App\Livewire\Sinf\EditSinf;
 use App\Livewire\Sinf\ListSinfs;
 use App\Livewire\Student\ListStudents;
 use App\Livewire\Teacher\ListTeachers;
@@ -31,10 +33,12 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/manage-students',ListStudents::class)->name('students.index');
     Route::get('/admin',ListAdmins::class)->name('admin.index');
     Route::get('/manage-classes',ListSinfs::class)->name('classes.index');
+    Route::get('/sinf/create',CreateSinf::class)->name('sinfs.create');
+    Route::get('/sinf/update/{record}',EditSinf::class)->name('sinf.edit');
 });
-Route::middleware(['auth'])->group(function (){
-    Route::get('/payments-list',ListPayments::class)->name('payments.index');
-    Route::get('/salaries-list',ListSalaries::class)->name('salaries.index');
-});
+// Route::middleware(['auth'])->group(function (){
+//     Route::get('/payments-list',ListPayments::class)->name('payments.index');
+//     Route::get('/salaries-list',ListSalaries::class)->name('salaries.index');
+// });
 
 require __DIR__.'/auth.php';
