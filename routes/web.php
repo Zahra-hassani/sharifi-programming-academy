@@ -35,10 +35,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/manage-classes',ListSinfs::class)->name('classes.index');
     Route::get('/sinf/create',CreateSinf::class)->name('sinfs.create');
     Route::get('/sinf/update/{record}',EditSinf::class)->name('sinf.edit');
+    // Route::get('/finance-payment',ListPayments::class)->name('payment.index');
 });
 // Route::middleware(['auth'])->group(function (){
-//     Route::get('/payments-list',ListPayments::class)->name('payments.index');
-//     Route::get('/salaries-list',ListSalaries::class)->name('salaries.index');
 // });
 
 require __DIR__.'/auth.php';
