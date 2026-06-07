@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Livewire\Sinf;
+namespace App\Livewire\Teacher;
 
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -14,9 +13,9 @@ use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use App\Models\Sinf;
+use App\Models\Teacher;
 
-class CreateSinf extends Component implements HasActions, HasSchemas
+class CreateTeacher extends Component implements HasActions, HasSchemas
 {
     use InteractsWithActions;
     use InteractsWithSchemas;
@@ -32,30 +31,31 @@ class CreateSinf extends Component implements HasActions, HasSchemas
     {
         return $schema
             ->components([
-                Section::make("Create new Sinf")->description("Add new Sinf")->schema([
-                    TextInput::make("title"),
-                    DatePicker::make("start_date"),
-                    DatePicker::make("end_date"),
-                    Textarea::make("description"),
-                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public'),
-                    TextInput::make("teacher_id"),
+                Section::make('Create new Teacher')->description('Add new Teacher')
+                ->schema([
+                    TextInput::make('last_name'),
+                    TextInput::make('degree_of_education'),
+                    TextInput::make('phone_number'),
+                    FileUpload::make('image_url')->directory('teacher_images')->visibility('public'),
+                    Textarea::make('bio'),
+                    TextInput::make('user_id'),
                 ])
             ])
             ->statePath('data')
-            ->model(Sinf::class);
+            ->model(Teacher::class);
     }
 
     public function create(): void
     {
         $data = $this->form->getState();
 
-        $record = Sinf::create($data);
+        $record = Teacher::create($data);
 
         $this->form->model($record)->saveRelationships();
     }
 
     public function render(): View
     {
-        return view('livewire.sinf.create-sinf');
+        return view('livewire.teacher.create-teacher');
     }
 }

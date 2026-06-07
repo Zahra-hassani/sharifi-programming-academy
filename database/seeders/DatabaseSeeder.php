@@ -34,18 +34,18 @@ class DatabaseSeeder extends Seeder
         //     "role" => "user"
         // ]);
         // User::factory()->create([
-        //     "name" => "Ahmad",
-        //     "email"=> "ahmad@example.com",
+        //     "name" => "Farhad",
+        //     "email"=> "farhad@example.com",
         //     "password"=> bcrypt("12345678"),
         //     "role" => "user"
         // ]);
-        $this->call([
+        // $this->call([
             // AdminSeeder::class,
             // StudentSeeder::class,
             // TeacherSeeder::class
             // SinfSeeder::class,
             // PaymentSeeder::class,
             // SalarySeeder::class
-        ]);
+        // ]);
     }
 }
