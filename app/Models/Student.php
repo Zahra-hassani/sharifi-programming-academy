@@ -10,6 +10,8 @@ class Student extends Model
         "last_name",
         "user_id",
         "phone_number",
+        "tazkira_no",
+        "image_url"
     ];
     
     public function user(){

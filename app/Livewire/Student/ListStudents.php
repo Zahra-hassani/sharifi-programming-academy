@@ -35,13 +35,13 @@ class ListStudents extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('payments.sinf.title')->badge()->listWithLineBreaks(),
                 ImageColumn::make('image_url'),
                 TextColumn::make('phone_number')->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('tazkira_no')->toggleable(isToggledHiddenByDefault:true),
+                TextColumn::make('tazkira_no')->label('ID card')->toggleable(isToggledHiddenByDefault:true),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                //
+                Action::make('Create Student')->label('Create New Student')->url(route('students.create'))->color('info'),
             ])
             ->recordActions([
                 Action::make('edit')->url(fn (Student $record):string => route('student.edit',$record->id))->openUrlInNewTab(),

@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Student;
 
+use App\Models\User;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
@@ -32,11 +34,12 @@ class EditStudent extends Component implements HasActions, HasSchemas
     {
         return $schema
             ->components([
-                Section::make("form")->description('Update Student information')->schema([
+                Section::make("Student Update Form")->columns(2)->description('Update Student information')->schema([
+                    Select::make('user_id')->options(User::query()->pluck('name','id'))->label('User Name'),
                     TextInput::make('last_name'),
                     TextInput::make('phone_number'),
-                    TextInput::make('tazkira_no'),
-                    FileUpload::make('image_url')->directory('Student_images')->visibility('public'),
+                    TextInput::make('tazkira_no')->label('ID card'),
+                    FileUpload::make('image_url')->directory('Student_images')->disk('public'),
                 ])
             ])
             ->statePath('data')

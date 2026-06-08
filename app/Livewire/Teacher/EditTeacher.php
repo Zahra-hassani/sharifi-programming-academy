@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Teacher;
 
+use App\Models\User;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -33,7 +35,8 @@ class EditTeacher extends Component implements HasActions, HasSchemas
     {
         return $schema
             ->components([
-                Section::make("form")->description('Update Teacher information')->schema([
+                Section::make("Teacher Update Form")->columns(2)->description('Update Teacher information')->schema([
+                    Select::make('user_id')->options(User::query()->pluck('name','id'))->label('User Name'),
                     TextInput::make('last_name'),
                     TextInput::make('degree_of_education'),
                     TextInput::make('phone_number'),

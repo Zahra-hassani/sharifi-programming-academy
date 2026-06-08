@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Sinf;
 
+use App\Models\Teacher;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -34,8 +36,9 @@ class EditSinf extends Component implements HasActions, HasSchemas
     {
         return $schema
             ->components([
-                Section::make('form')->description('description')->columns(2)->schema([
+                Section::make('Class Update Form')->description('Update Class Information')->columns(2)->schema([
                     TextInput::make('title')->required()->label('Course Name'),
+                    Select::make('teacher_id')->options(Teacher::query()->pluck('last_name','id'))->label('Teacher'),
                     DatePicker::make('start_date')->format('Y-m-d')->native(true)->locale('fa'),
                     DatePicker::make('end_date')->format('Y-m-d')->native(true)->locale('fa'),
                     Textarea::make('description'),

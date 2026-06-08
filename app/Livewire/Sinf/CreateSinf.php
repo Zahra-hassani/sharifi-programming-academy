@@ -38,7 +38,7 @@ class CreateSinf extends Component implements HasActions, HasSchemas
                     DatePicker::make("end_date"),
                     Textarea::make("description"),
                     TextInput::make("teacher_id"),
-                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public'),
+                    FileUpload::make('banner_url')->directory('Sinfs')->disk('public'),
                 ])
             ])
             ->statePath('data')

@@ -49,7 +49,7 @@ class ListSinfs extends Component implements HasActions, HasSchemas, HasTable
                 }),
             ])
             ->headerActions([
-                //
+                Action::make('Create Sinf')->label('Create New Sinf')->url(route('sinfs.create'))->color('info'),
             ])
             ->recordActions([
                 Action::make('edit')->url(fn (Sinf $record):string => route('sinf.edit',$record->id))->openUrlInNewTab(),

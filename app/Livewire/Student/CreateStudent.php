@@ -33,8 +33,8 @@ class CreateStudent extends Component implements HasActions, HasSchemas
                 Section::make('Create new Student')->description('Add new Student')->schema([
                     TextInput::make('last_name'),
                     TextInput::make('phone_number'),
-                    TextInput::make('tazkira_number'),
-                    FileUpload::make('Image_url')->directory('Student_images')->visibility('public'),
+                    TextInput::make('tazkira_no')->label('ID card')->required(),
+                    FileUpload::make('Image_url')->directory('Student_images')->disk('public'),
                     TextInput::make('user_id'),
                 ]),
             ])
