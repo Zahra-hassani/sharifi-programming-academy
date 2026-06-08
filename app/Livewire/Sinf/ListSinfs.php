@@ -11,6 +11,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -36,7 +37,8 @@ class ListSinfs extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('start_date'),
                 TextColumn::make('payments.student.user.name')->label('Students'),
                 TextColumn::make('end_date')->toggleable(isToggledHiddenByDefault:true),
-                TextColumn::make('description')->limit(15),
+                ImageColumn::make('banner_url'),
+                TextColumn::make('description')->limit(15)->toggleable(isToggledHiddenByDefault:true),
             ])
             ->filters([
                 Filter::make('start_date')->label('Filter by Start Date' )->form([DatePicker::make('start_date')->label('Start Date')])->query(function (Builder $query , array $data): Builder {

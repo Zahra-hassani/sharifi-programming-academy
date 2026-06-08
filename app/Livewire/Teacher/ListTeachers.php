@@ -45,6 +45,7 @@ class ListTeachers extends Component implements HasActions, HasSchemas, HasTable
                 //
             ])
             ->recordActions([
+                Action::make('edit')->url(fn (Teacher $record):string => route('teacher.edit',$record->id))->openUrlInNewTab(),
                 Action::make('delete')->requiresConfirmation()->action(fn (Teacher $record) => $record->delete($record->id))->color('danger')->successNotification(
                     Notification::make()->title('Teacher deleted successfully')->success()
                 )

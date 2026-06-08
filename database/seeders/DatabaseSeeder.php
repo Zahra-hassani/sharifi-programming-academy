@@ -33,12 +33,12 @@ class DatabaseSeeder extends Seeder
         //     "password"=> bcrypt("12345678"),
         //     "role" => "user"
         // ]);
-        // User::factory()->create([
-        //     "name" => "Farhad",
-        //     "email"=> "farhad@example.com",
-        //     "password"=> bcrypt("12345678"),
-        //     "role" => "user"
-        // ]);
+        User::factory()->create([
+            "name" => "Jamila",
+            "email"=> "jamila@example.com",
+            "password"=> bcrypt("12345678"),
+            "role" => "user"
+        ]);
         // $this->call([
             // AdminSeeder::class,
             // StudentSeeder::class,

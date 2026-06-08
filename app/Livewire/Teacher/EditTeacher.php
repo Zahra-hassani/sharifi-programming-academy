@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Livewire\Student;
+namespace App\Livewire\Teacher;
 
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
@@ -12,47 +13,47 @@ use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use App\Models\Student;
+use App\Models\Teacher;
 
-class CreateStudent extends Component implements HasActions, HasSchemas
+class EditTeacher extends Component implements HasActions, HasSchemas
 {
     use InteractsWithActions;
     use InteractsWithSchemas;
+
+    public Teacher $record;
 
     public ?array $data = [];
 
     public function mount(): void
     {
-        $this->form->fill();
+        $this->form->fill($this->record->attributesToArray());
     }
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Create new Student')->description('Add new Student')->schema([
+                Section::make("form")->description('Update Teacher information')->schema([
                     TextInput::make('last_name'),
+                    TextInput::make('degree_of_education'),
                     TextInput::make('phone_number'),
-                    TextInput::make('tazkira_number'),
-                    FileUpload::make('Image_url')->directory('Student_images')->visibility('public'),
-                    TextInput::make('user_id'),
-                ]),
+                    FileUpload::make('image_url')->directory('teacher_images')->visibility('public'),
+                    Textarea::make('bio'),
+                ])
             ])
             ->statePath('data')
-            ->model(Student::class);
+            ->model($this->record);
     }
 
-    public function create(): void
+    public function save(): void
     {
         $data = $this->form->getState();
 
-        $record = Student::create($data);
-
-        $this->form->model($record)->saveRelationships();
+        $this->record->update($data);
     }
 
     public function render(): View
     {
-        return view('livewire.student.create-student');
+        return view('livewire.teacher.edit-teacher');
     }
 }

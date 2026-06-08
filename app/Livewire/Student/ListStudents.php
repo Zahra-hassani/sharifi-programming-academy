@@ -9,6 +9,7 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -32,6 +33,7 @@ class ListStudents extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('user.email')->label('email'),
                 TextColumn::make('last_name'),
                 TextColumn::make('payments.sinf.title')->badge()->listWithLineBreaks(),
+                ImageColumn::make('image_url'),
                 TextColumn::make('phone_number')->toggleable(isToggledHiddenByDefault:false),
                 TextColumn::make('tazkira_no')->toggleable(isToggledHiddenByDefault:true),
             ])
@@ -42,6 +44,7 @@ class ListStudents extends Component implements HasActions, HasSchemas, HasTable
                 //
             ])
             ->recordActions([
+                Action::make('edit')->url(fn (Student $record):string => route('student.edit',$record->id))->openUrlInNewTab(),
                 Action::make('delete')->action(fn (Student $record) => $record->delete($record->id))->color('danger')->badge()
             ])
             ->toolbarActions([

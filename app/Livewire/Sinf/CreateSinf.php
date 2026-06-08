@@ -32,13 +32,13 @@ class CreateSinf extends Component implements HasActions, HasSchemas
     {
         return $schema
             ->components([
-                Section::make("Create new Sinf")->description("Add new Sinf")->schema([
+                Section::make("Create new Sinf")->columns(2)->description("Add new Sinf")->schema([
                     TextInput::make("title"),
                     DatePicker::make("start_date"),
                     DatePicker::make("end_date"),
                     Textarea::make("description"),
-                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public'),
                     TextInput::make("teacher_id"),
+                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public'),
                 ])
             ])
             ->statePath('data')

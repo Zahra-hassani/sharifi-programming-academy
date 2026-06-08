@@ -5,6 +5,7 @@ namespace App\Livewire\Sinf;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -38,6 +39,7 @@ class EditSinf extends Component implements HasActions, HasSchemas
                     DatePicker::make('start_date')->format('Y-m-d')->native(true)->locale('fa'),
                     DatePicker::make('end_date')->format('Y-m-d')->native(true)->locale('fa'),
                     Textarea::make('description'),
+                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public')
                 ])
             ])
             ->statePath('data')

@@ -14,45 +14,44 @@ use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use App\Models\Student;
 
-class CreateStudent extends Component implements HasActions, HasSchemas
+class EditStudent extends Component implements HasActions, HasSchemas
 {
     use InteractsWithActions;
     use InteractsWithSchemas;
+
+    public Student $record;
 
     public ?array $data = [];
 
     public function mount(): void
     {
-        $this->form->fill();
+        $this->form->fill($this->record->attributesToArray());
     }
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Create new Student')->description('Add new Student')->schema([
+                Section::make("form")->description('Update Student information')->schema([
                     TextInput::make('last_name'),
                     TextInput::make('phone_number'),
-                    TextInput::make('tazkira_number'),
-                    FileUpload::make('Image_url')->directory('Student_images')->visibility('public'),
-                    TextInput::make('user_id'),
-                ]),
+                    TextInput::make('tazkira_no'),
+                    FileUpload::make('image_url')->directory('Student_images')->visibility('public'),
+                ])
             ])
             ->statePath('data')
-            ->model(Student::class);
+            ->model($this->record);
     }
 
-    public function create(): void
+    public function save(): void
     {
         $data = $this->form->getState();
 
-        $record = Student::create($data);
-
-        $this->form->model($record)->saveRelationships();
+        $this->record->update($data);
     }
 
     public function render(): View
     {
-        return view('livewire.student.create-student');
+        return view('livewire.student.edit-student');
     }
 }
