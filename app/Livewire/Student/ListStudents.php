@@ -33,7 +33,7 @@ class ListStudents extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('user.email')->label('email'),
                 TextColumn::make('last_name'),
                 TextColumn::make('payments.sinf.title')->badge()->listWithLineBreaks(),
-                ImageColumn::make('image_url'),
+                ImageColumn::make('image_url')->disk('public'),
                 TextColumn::make('phone_number')->toggleable(isToggledHiddenByDefault:false),
                 TextColumn::make('tazkira_no')->label('ID card')->toggleable(isToggledHiddenByDefault:true),
             ])
