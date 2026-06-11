@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Teacher;
 
+use App\Models\User;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
@@ -14,6 +15,7 @@ use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
@@ -38,7 +40,6 @@ class CreateTeacher extends Component implements HasActions, HasSchemas
                         TextInput::make('name'),
                         TextInput::make('email')->required(),
                         TextInput::make('password')->required(),
-                        TextInput::make('user_type')->default('teacher')->readOnly(),
                     ]),
                     Step::make('Teacher')->columns(2)->schema([
                         TextInput::make('last_name')->required(),
@@ -70,7 +71,23 @@ class CreateTeacher extends Component implements HasActions, HasSchemas
     {
         $data = $this->form->getState();
 
-        //
+        DB::transaction(function () use ($data) {
+            $user = User::create([
+                'name'=> $data['name'],
+                'email'=> $data['email'],
+                'password'=> bcrypt($data['password']),
+                'user_type' => 'teacher'
+            ]);
+            $user->teacher()->create([
+                'last_name' => $data['last_name'],
+                'degree_of_education' => $data['degree_of_education'],
+                'field_of_education' => $data['field_of_education'],
+                'phone_number' => $data['phone_number'],
+                'image_url' => $data['image_url'],
+                'bio' => $data['bio'],
+            ]);
+            return redirect()->route('teachers.index');
+        });
     }
 
     public function render(): View

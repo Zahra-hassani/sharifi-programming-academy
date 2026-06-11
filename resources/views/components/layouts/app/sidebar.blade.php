@@ -31,7 +31,7 @@
                     <flux:navlist.item icon="building-library" :href="route('classes.index')" :current="request()->routeIs('classes.index')" wire:navigate>Manage Classes</flux:navlist.item>
                 </flux:navlist.group>
                 <flux:navlist.group heading="Finance" class="grid">
-                    {{-- <flux:navlist.item icon="banknotes" :href="route('payment.index')" :current="request()->routeIs('payment.index')" wire:navigate>Student Payment</flux:navlist.item> --}}
+                    <flux:navlist.item icon="banknotes" :href="route('payment.index')" :current="request()->routeIs('payment.index')" wire:navigate>Student Payment</flux:navlist.item>
                     {{-- <flux:navlist.item icon="scale" :href="route('salaries.index')" :current="request()->routeIs('salaries.index')" wire:navigate>Teachers Salaries </flux:navlist.item> --}}
                 </flux:navlist.group>
             </flux:navlist>

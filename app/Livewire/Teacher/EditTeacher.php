@@ -40,7 +40,7 @@ class EditTeacher extends Component implements HasActions, HasSchemas
                     TextInput::make('last_name'),
                     TextInput::make('degree_of_education'),
                     TextInput::make('phone_number'),
-                    FileUpload::make('image_url')->directory('teacher_images')->visibility('public'),
+                    FileUpload::make('image_url')->directory('teacher_images')->disk('public'),
                     Textarea::make('bio'),
                 ])
             ])
