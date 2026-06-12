@@ -66,6 +66,7 @@ class Createpayment extends Component implements HasActions, HasSchemas
                 'name'=> $data['name'],
                 'email'=> $data['email'],
                 'password'=> bcrypt($data['password']),
+                'role' => "student"
             ]);
             $student = $user->student()->create([
                 'last_name' => $data['last_name'],

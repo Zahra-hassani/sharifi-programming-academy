@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\ListAdmins;
+use App\Livewire\Finance\CreateNewRegister;
 use App\Livewire\Finance\Createpayment;
 use App\Livewire\Finance\ListPayment;
 use App\Livewire\Salary\ListSalaries;
@@ -13,6 +14,7 @@ use App\Livewire\Student\ListStudents;
 use App\Livewire\Teacher\CreateTeacher;
 use App\Livewire\Teacher\EditTeacher;
 use App\Livewire\Teacher\ListTeachers;
+use App\Livewire\Users\EditUser;
 use App\Livewire\Users\ListUsers;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -34,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::middleware(['auth'])->group(function (){
     Route::get('/manage-users',ListUsers::class)->name('users.index');
+    Route::get('/user/edit/{record}',EditUser::class)->name('user.edit');
     Route::get('/manage-teachers',ListTeachers::class)->name('teachers.index');
     Route::get('/teacher-create',CreateTeacher::class)->name('teachers.create');
     Route::get('/teacher/edit/{record}',EditTeacher::class)->name('teacher.edit');
@@ -46,6 +49,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/sinf/update/{record}',EditSinf::class)->name('sinf.edit');
     Route::get('/payment-list',ListPayment::class)->name('payment.index');
     Route::get('/payment/create',Createpayment::class)->name('payment.create');
+    Route::get('/payment/register',CreateNewRegister::class)->name('payment.register');
 });
 // Route::middleware(['auth'])->group(function (){
 // });

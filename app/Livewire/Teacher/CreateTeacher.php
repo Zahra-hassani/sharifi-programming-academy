@@ -42,7 +42,7 @@ class CreateTeacher extends Component implements HasActions, HasSchemas
                         TextInput::make('email')->required(),
                         TextInput::make('password')->required(),
                     ]),
-                    Step::make('Teacher')->icon(Heroicon::Pencil)->completedIcon(Heroicon::CheckBadge)->description('Who is our new teacher?')->columns(2)->schema([
+                    Step::make('Teacher')->icon(Heroicon::BookOpen)->completedIcon(Heroicon::CheckBadge)->description('Who is our new teacher?')->columns(2)->schema([
                         TextInput::make('last_name')->required(),
                         Select::make('degree_of_education')->options([
                             "secondary school" => "Secondary School Diploma",
@@ -77,7 +77,7 @@ class CreateTeacher extends Component implements HasActions, HasSchemas
                 'name'=> $data['name'],
                 'email'=> $data['email'],
                 'password'=> bcrypt($data['password']),
-                'user_type' => 'teacher'
+                'role' => 'teacher'
             ]);
             $user->teacher()->create([
                 'last_name' => $data['last_name'],

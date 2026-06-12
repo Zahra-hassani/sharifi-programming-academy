@@ -60,7 +60,7 @@ class CreateStudent extends Component implements HasActions, HasSchemas
             'name'=> $data['name'],
             'email'=> $data['email'],
             'password'=> bcrypt($data['password']),
-            "user_type" => 'student'
+            "role" => 'student'
         ]);
         $user->student()->create([
             'last_name' => $data['last_name'],

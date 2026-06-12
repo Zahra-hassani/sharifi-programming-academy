@@ -42,7 +42,7 @@ class EditSinf extends Component implements HasActions, HasSchemas
                     DatePicker::make('start_date')->format('Y-m-d')->native(true)->locale('fa'),
                     DatePicker::make('end_date')->format('Y-m-d')->native(true)->locale('fa'),
                     Textarea::make('description'),
-                    FileUpload::make('banner_url')->directory('Sinfs')->visibility('public')
+                    FileUpload::make('banner_url')->directory('Sinfs')->disk('public')
                 ])
             ])
             ->statePath('data')

@@ -38,6 +38,7 @@ class ListPayment extends Component implements HasActions, HasSchemas, HasTable
             ])
             ->headerActions([
                 Action::make("create payment")->url(route('payment.create'))->color('info'),
+                Action::make('register for new course')->url(route('payment.register'))->color('info'),
             ])
             ->recordActions([
                 Action::make('delete')->action(fn (Payment $record) => $record->delete($record->id))->color('danger')->badge()

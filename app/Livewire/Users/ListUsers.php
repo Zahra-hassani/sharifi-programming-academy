@@ -39,7 +39,8 @@ class ListUsers extends Component implements HasActions, HasSchemas, HasTable
                 //
             ])
             ->recordActions([
-                Action::make('delete')->requiresConfirmation()->action(fn (User $record) => $record->delete($record->id))->color('danger')
+                Action::make('edit')->url(fn (User $record) :string => url(route('user.edit',$record->id)))->openUrlInNewTab(),
+                Action::make('delete')->requiresConfirmation()->action(fn (User $record) => $record->delete($record->id))->color('danger'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
