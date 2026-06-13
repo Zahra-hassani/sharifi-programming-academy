@@ -14,6 +14,7 @@ use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
@@ -36,12 +37,12 @@ class CreateTeacher extends Component implements HasActions, HasSchemas
         return $schema
             ->components([
                 Wizard::make([
-                    Step::make('User')->schema([
+                    Step::make('User')->icon(Heroicon::UserCircle)->completedIcon(Heroicon::CheckBadge)->description('Add our new user details')->schema([
                         TextInput::make('name'),
                         TextInput::make('email')->required(),
                         TextInput::make('password')->required(),
                     ]),
-                    Step::make('Teacher')->columns(2)->schema([
+                    Step::make('Teacher')->icon(Heroicon::Pencil)->completedIcon(Heroicon::CheckBadge)->description('Who is our new teacher?')->columns(2)->schema([
                         TextInput::make('last_name')->required(),
                         Select::make('degree_of_education')->options([
                             "secondary school" => "Secondary School Diploma",

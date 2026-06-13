@@ -12,6 +12,7 @@ use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
@@ -34,12 +35,12 @@ class CreateStudent extends Component implements HasActions, HasSchemas
         return $schema
             ->components([
                 Wizard::make([
-                    Step::make('User')->schema([
+                    Step::make('User')->icon(Heroicon::UserCircle)->completedIcon(Heroicon::CheckBadge)->description('Add new user details')->schema([
                         TextInput::make('name'),
                         TextInput::make('email')->required(),
                         TextInput::make('password')->required(),
                     ]),
-                    Step::make('Student')->schema([
+                    Step::make('Student')->icon(Heroicon::AcademicCap)->completedIcon(Heroicon::CheckBadge)->description('Who is our new student?')->schema([
                         TextInput::make('last_name'),
                         TextInput::make('phone_number'),
                         TextInput::make('tazkira_no')->label('tazkira_number'),

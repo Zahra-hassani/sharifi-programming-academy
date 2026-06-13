@@ -28,7 +28,7 @@ class ListPayment extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->query(fn (): Builder => Payment::query())
             ->columns([
-                TextColumn::make("student.user.name"),
+                TextColumn::make("student.user.name")->label('Student Name'),
                 TextColumn::make("sinf.title"),
                 TextColumn::make("amount"),
                 TextColumn::make("created_at")->label("Date"),
@@ -37,7 +37,7 @@ class ListPayment extends Component implements HasActions, HasSchemas, HasTable
                 //
             ])
             ->headerActions([
-                //
+                Action::make("create payment")->url(route('payment.create'))->color('info'),
             ])
             ->recordActions([
                 Action::make('delete')->action(fn (Payment $record) => $record->delete($record->id))->color('danger')->badge()
